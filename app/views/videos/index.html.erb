@@ -8,6 +8,19 @@
         <%= v.description %><br/>
         <strong><%= v.user.name if v.user %></strong>
         
+        <% if v.user == current_user %>
+          <div class="actions">
+            <%= link_to edit_video_path(v) do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            Edit
+          <% end %>
+
+           <%= link_to v, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>

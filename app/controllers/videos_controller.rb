@@ -11,14 +11,33 @@ class VideosController < ApplicationController
     @v = current_user.videos.build(video_params)
     if @v.save
       flash[:notice] = 'video was successfully created.'
-      redirect_to video_params
+      redirect_to @v
     else
       render action: 'new'
     end
   end
 
   def show
-  	
+  	@v = Video.find(params[:id])
+  end
+
+  def edit
+    @v = Video.find(params[:id])
+  end
+
+  def update
+    @v = Video.find(params[:id])
+    if @v.update(video_params)
+      redirect_to @v, notice: 'Video was successfully update'
+    else
+      render action: 'edit'
+    end
+  end
+
+  def destroy
+    @v = Video.find(params[:id])
+    @v.destroy
+    redirect_to videos_path
   end
 
   private

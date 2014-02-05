@@ -4,11 +4,22 @@
   <div class="col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading center">
-        <video><%= @v.video.url(:medium) %></video>
+        <iframe width="490" height="275" src="<%= @v.video.url %>" frameborder="0" allowfullscreen autoplay="true"></iframe>
       </div>
       <div class="panel-body">
         <p><%= @v.description %></p>
         <p><strong><%= @v.user.email if @v.user %></strong></p>
+
+        <% if @v.user == current_user %>
+          <%= link_to edit_video_path(@v) do %>
+            <span class="glyphicon glyphicon-edit"></span>
+            Edit
+          <% end %>
+          <%= link_to @v, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span>
+            Delete
+          <% end %>
+        <% end %>
 
       </div>
     </div>
