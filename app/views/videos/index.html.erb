@@ -1,0 +1,17 @@
+<%= render 'pages/home' unless user_signed_in? %>
+
+<div id="videos" class="transitions-enabled">
+  <% @videos.each do |v| %>
+    <div class="box panel panel-default">
+      <iframe width="490" height="275" src="<%= v.video.url %>" frameborder="0" allowfullscreen autoplay="true"></iframe>
+      <div class="panel-body">
+        <%= v.description %><br/>
+        <strong><%= v.user.name if v.user %></strong>
+        
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="center">
+  <%= will_paginate @posts %>
+</div>
