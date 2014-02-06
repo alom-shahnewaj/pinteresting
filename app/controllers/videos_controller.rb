@@ -37,7 +37,7 @@ class VideosController < ApplicationController
   def destroy
     @v = Video.find(params[:id])
     @v.destroy
-    redirect_to videos_path
+    redirect_to pins_url
   end
 
   private

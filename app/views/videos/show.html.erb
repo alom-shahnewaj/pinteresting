@@ -1,10 +1,13 @@
-<%= link_to 'Back', videos_path %>
+<%= link_to 'Back', root_path %>
 
 <div class="row">
   <div class="col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading center">
-        <iframe width="490" height="275" src="<%= @v.video.url %>" frameborder="0" allowfullscreen autoplay="true"></iframe>
+        <video width="320" height="240" controls>
+          <source src="<%= @v.video.url %>">
+        </video>
+        
       </div>
       <div class="panel-body">
         <p><%= @v.description %></p>
@@ -19,6 +22,7 @@
             <span class="glyphicon glyphicon-trash"></span>
             Delete
           <% end %>
+          <%= link_to raw('<span class="glyphicon glyphicon-plus"></span> New Video'), new_pin_path %>
         <% end %>
 
       </div>

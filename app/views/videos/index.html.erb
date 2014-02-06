@@ -1,9 +1,12 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
-<div id="videos" class="transitions-enabled">
+<div id="pins" class="transitions-enabled">
   <% @videos.each do |v| %>
     <div class="box panel panel-default">
-      <iframe width="490" height="275" src="<%= v.video.url %>" frameborder="0" allowfullscreen autoplay="true"></iframe>
+      
+
+      <%= video_tag (v.video.url, :size => "320x240", :controls => true, :autobuffer => true) %>
+      
       <div class="panel-body">
         <%= v.description %><br/>
         <strong><%= v.user.name if v.user %></strong>

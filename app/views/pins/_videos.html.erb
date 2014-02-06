@@ -1,0 +1,36 @@
+<div id="videos" class="transitions-enabled">
+  <% @videos.each do |v| %>
+    <div class="video-box panel panel-default">
+      <video width="320" height="240" controls>
+        <source src="<%= v.video.url %>">
+      </video>
+      <div class="panel-body">
+        <%= v.description %><br/>
+        <% if v.user %>
+          <strong><%= link_to v.user.name, edit_user_registration_path %></strong>
+        <% end %>
+        
+        <% if !current_user.blank? %>
+          <% if v.user == current_user %>
+            <div class="actions">
+              <%= link_to edit_video_path(v) do %>
+                  <span class="glyphicon glyphicon-edit"></span>
+                  Edit
+              <% end %>
+             <%= link_to v, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <span class="glyphicon glyphicon-trash"></span>
+                Delete
+              <% end %>
+              <%= link_to raw('<span class="glyphicon glyphicon-plus"></span> New Video'), new_video_path %>
+            </div>
+          <% end %>
+        <% end %>
+
+        
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="center">
+  <%= will_paginate @posts %>
+</div>
