@@ -6,11 +6,13 @@
       </video>
       <div class="panel-body">
         <%= v.description %><br/>
-        <% if v.user %>
-          <strong><%= link_to v.user.name, edit_user_registration_path %></strong>
-        <% end %>
         
         <% if !current_user.blank? %>
+
+          <% if v.user %>
+            <strong><%= link_to v.user.name, edit_user_registration_path %></strong>
+          <% end %>
+
           <% if v.user == current_user %>
             <div class="actions">
               <%= link_to edit_video_path(v) do %>
@@ -24,13 +26,12 @@
               <%= link_to raw('<span class="glyphicon glyphicon-plus"></span> New Video'), new_video_path %>
             </div>
           <% end %>
+        <% else %>
+          <strong><%= v.user.name if v.user %></strong>
         <% end %>
 
         
       </div>
     </div>
   <% end %>
-</div>
-<div class="center">
-  <%= will_paginate @posts %>
 </div>

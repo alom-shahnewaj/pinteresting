@@ -1,5 +1,10 @@
 <%= render 'pages/home' unless user_signed_in? %>
 
 <%= render 'images' %>
-
+<hr />
+<h1>Videos</h1>
 <%= render 'videos' %>
+
+<div class="center">
+  <%= will_paginate @posts %>
+</div>
