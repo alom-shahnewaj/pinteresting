@@ -5,7 +5,7 @@
 
   def index
     @pins = Pin.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 12)
-    @videos = Video.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 12)
+    # @videos = Video.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 12)
   end
 
   def show
@@ -13,7 +13,7 @@
 
   def new
     @pin = current_user.pins.build
-    @v = current_user.videos.build
+    # @v = current_user.videos.build
   end
 
   def edit
@@ -54,6 +54,6 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:description, :image) 
+      params.require(:pin).permit(:description, :image, :video, :thum, :video_description) 
     end
   end

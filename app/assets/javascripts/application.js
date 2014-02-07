@@ -17,3 +17,11 @@
 //= require jquery.turbolinks
 //= require masonry/jquery.masonry
 //= require_tree .
+
+
+var container = document.querySelector('#container');
+var msnry = new Masonry( container, {
+  // options
+  columnWidth: 95,
+  itemSelector: '.item'
+});

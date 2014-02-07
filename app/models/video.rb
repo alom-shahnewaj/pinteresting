@@ -40,8 +40,9 @@ class Video < ActiveRecord::Base
 																'video/avi',
 																'video/x-ms-asx',
 																'video/x-ms-wvx',
-																'video/x-ms-wmx'], 
-											:message => "Sorry, this video format isn't supported"
+																'video/x-ms-wmx'],
+											:processors => lambda { |a| a.video? ? [ :video_thumbnail ] : [ :thumbnail ] }, 
+											:message => "Unidentified format, must be 3gpp 3gpp2 annodex divx x-ms-wmx x-ms-wvx x-ms-asx x-tivo x-sgi-movie flv h264 mp4 mp4v-es mpeg mpeg-2  mpeg4 ogg ogm quicktime ty vdo vivo vnd.rn-realvideo vnd.vivo webm x-bin x-cdg x-divx x-dv x-flv x-la-asf x-m4v x-matroska x-motion-jpeg x-ms-asf x-ms-dvr x-ms-wm x-ms-wmv x-msvide avi"
 
 	validates :description, presence: true
 	validates :video, presence: true

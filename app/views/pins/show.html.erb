@@ -4,7 +4,17 @@
   <div class="col-md-offset-2 col-md-8">
     <div class="panel panel-default">
       <div class="panel-heading center">
-        <%= image_tag @pin.image.url(:medium) %>
+
+        
+
+        <% if !@pin.image.blank? %>
+          <%= image_tag @pin.image.url(:medium) %>
+        <% elsif !@pin.video.blank? %>
+          <video width="320" height="240" controls>
+            <source src="<%= @pin.video.url %>">
+          </video>
+        <% end %>
+        
       </div>
       <div class="panel-body">
         <p><%= @pin.description %></p>
@@ -15,7 +25,7 @@
           	<span class="glyphicon glyphicon-edit"></span>
           	Edit
         	<% end %>
-          <%= link_to raw('<span class="glyphicon glyphicon-plus"></span> New image'), new_pin_path %>
+          <%= link_to raw('<span class="glyphicon glyphicon-plus"></span> New pin'), new_pin_path %>
         <% end %>
 
       </div>

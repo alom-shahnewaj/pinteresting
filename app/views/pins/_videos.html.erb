@@ -2,7 +2,7 @@
   <% @videos.each do |v| %>
     <div class="video-box panel panel-default">
       <video width="320" height="240" controls>
-        <source src="<%= v.video.url %>">
+        <source src="<%= v.video.url(:thumbnail) %>">
       </video>
       <div class="panel-body">
         <%= v.description %><br/>
